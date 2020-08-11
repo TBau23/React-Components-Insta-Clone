@@ -6,15 +6,21 @@ import { faHeart, faCircle, faCompass } from '@fortawesome/free-regular-svg-icon
 import "./SearchBar.css";
 
 const SearchBar = (props) => {
+
+  const { searchTerm, setSearchTerm} = props;
+
   return (
     <div className="search-bar-wrapper">
       <div className="social">
         <FontAwesomeIcon icon={faInstagram} />
       </div>
       <form className="search-form">
+        
         <input
           type="text"
           placeholder="Search"
+          value={searchTerm}
+          onChange={evt => setSearchTerm(evt.target.value)}
         />
       </form>
       <div className="social-wrapper">

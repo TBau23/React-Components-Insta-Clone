@@ -18,10 +18,16 @@ console.log(dummyData)
 const App = () => {
 
   const [posts, setPosts] = useState(dummyData)
+  const [searchTerm, setSearchTerm] = useState('')
+
   // Create a state called `posts` to hold the array of post objects, **initializing to dummyData**.
   // This state is the source of truth for the data inside the app. You won't be needing dummyData anymore.
   // To make the search bar work (which is stretch) we'd need another state to hold the search term.
   // const [posts, setPosts] = useState(dummyData)
+
+  const filteredPosts = posts.filter(post => {
+    return post.username.toLowerCase().includes(searchTerm.toLowerCase())
+  })
 
 
   const likePost = postId => {
@@ -35,6 +41,8 @@ const App = () => {
         }
       })
     )
+
+   
     /*
       This function serves the purpose of increasing the number of likes by one, of the post with a given id.
 
@@ -52,8 +60,13 @@ const App = () => {
     <div className='App'>
       {/* Add SearchBar and Posts here to render them */}
       {/* Check the implementation of each component, to see what props they require, if any! */}
-      <SearchBar />
-      <InstaPosts posts={posts} likePost={likePost} />
+      <SearchBar 
+      searchTerm={searchTerm} 
+      setSearchTerm={setSearchTerm} 
+      />
+      <InstaPosts posts={posts} 
+      likePost={likePost}
+      filteredPosts={filteredPosts} />
     </div>
   );
 };
