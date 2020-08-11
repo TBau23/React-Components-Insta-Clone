@@ -24,7 +24,7 @@ const Post = props => {
       <LikeSection numberOfLikes={post.likes}
        likePost={() => likePost(post.id)} />
       {/* Comments also wants its props! */}
-      <Comments comment={post.comments}/>
+      <Comments comments={post.comments}/>
     </div>
   );
 };
